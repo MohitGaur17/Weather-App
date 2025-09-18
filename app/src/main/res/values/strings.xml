@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Weather App</string>
+    <string name="search_city">Search City</string>
+    <string name="city_input_desc">Enter city name</string>
+    <string name="search_button">Search</string>
+    <string name="weather_icon">Weather icon</string>
+    <string name="city_name_placeholder">City Name</string>
+    <string name="temp_placeholder">x°</string>
+    <string name="humidity_icon">Humidity icon</string>
+    <string name="humidity_placeholder">--%</string>
+    <string name="humidity">Humidity</string>
+    <string name="wind_icon">Wind icon</string>
+    <string name="wind_placeholder">-- km/h</string>
+    <string name="wind">Wind</string>
+</resources>
