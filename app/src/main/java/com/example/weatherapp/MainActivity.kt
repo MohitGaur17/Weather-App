@@ -35,14 +35,12 @@ class MainActivity : AppCompatActivity() {
         val getWeatherButton: Button = findViewById(R.id.getWeatherButton)
         val cityName = findViewById<TextView>(R.id.cityName)
 
-        // Retrofit for Geo API
         val geoRetrofit = Retrofit.Builder()
             .baseUrl("https://geocoding-api.open-meteo.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         geoApi = geoRetrofit.create(GeoAPI::class.java)
 
-        // Retrofit for Weather API
         val weatherRetrofit = Retrofit.Builder()
             .baseUrl("https://api.open-meteo.com/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -52,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         getWeatherButton.setOnClickListener {
             val city = cityInput.text.toString().trim()
             cityName.text = city
+
             if (city.isNotEmpty()) {
                 getCoordinateAndWeather(city)
             } else {
@@ -71,11 +70,12 @@ class MainActivity : AppCompatActivity() {
         val humidity = findViewById<TextView>(R.id.humidityData)
         val wind = findViewById<TextView>(R.id.windData)
         val hourlyData = findViewById<RecyclerView>(R.id.hourlyData)
-
+        Toast.makeText(this, "Fetching data", Toast.LENGTH_SHORT).show()
         hourlyData.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         geoApi.getCityCoordinates(city).enqueue(object : retrofit2.Callback<GeoResponse> {
             override fun onResponse(call: Call<GeoResponse>, response: Response<GeoResponse>) {
+
                 if (response.isSuccessful) {
                     val geoResponse = response.body()
                     if (!geoResponse?.results.isNullOrEmpty()) {
